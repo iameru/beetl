@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  },
+  "name": "beetle",
+  "description": "beetl is supposed to be a small sideproject",
+  "version": "1.0.0",
+  "main": "index.html",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iameru",
+  "license": "ISC"
+}
