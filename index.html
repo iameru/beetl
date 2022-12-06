@@ -7,15 +7,39 @@
   <link rel="stylesheet" href="./src/style.css">
   <title>beetl It!</title>
 </head>
-<body class="bg-orange-50 text-4xl px-12 pt-20 flex flex-col items-center gap-12">
-  <header>
-    Website under construction
-  </header>
-  <main>
-    <p class="text-base">If you need a tool for splitting up a sum of money you want to reach on individuals bidding on it this will be the tool being built</p>
-  </main>
-  <footer>
-    until then, check out my other projects at <a class="text-sky-700 hover:underline" href="https://i3o.eu/projekte.html">my websiiiiite</a>
-  </footer>
+<body>
+  <div class="container">
+    <menu class="flex bg-violet-50 justify-around items-center text-lg h-12 border rounded-md m-2">
+      <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./index.html">info</a>
+      <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./src/create.html">create</a>
+      <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./src/beetl.html">beetl</a>
+    </menu>
+    <main>
+      <div>
+        <label for="beetl-name">Name:</label>
+        <input type="text" id="beetl-name" placeholder="Choose a title">
+        <p class="description">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
+        </p>
+      </div>
+      <div>
+        <label for="beetl-description">Description:</label>
+        <input type="text" id="beetl-description" placeholder="describe if your project if you want">
+        <p class="description">
+          Lorem. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
+        </p>
+      </div>
+      <div>
+        <label for="target-budget">Target Budget:</label>
+        <input type="text" id="target-budget" placeholder="4.000€ / 3.250 $ / ...">
+        <p class="description">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
+        </p>
+      </div>
+      <button id="create-beetle">
+        GO
+      </button>
+    </main>
+  </div>
 </body>
 </html>
