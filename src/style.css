@@ -6,3 +6,13 @@
 .centered {
   @apply flex items-center justify-center;
 }
+
+.label {
+  @apply text-lg font-medium;
+}
+.input {
+  @apply border border-amber-100 bg-amber-50 rounded-md p-2 text-lg;
+}
+.description {
+  @apply text-stone-600 text-sm font-light;
+}

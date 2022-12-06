@@ -8,37 +8,41 @@
   <title>beetl It!</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container h-screen flex flex-col">
     <menu class="flex bg-violet-50 justify-around items-center text-lg h-12 border rounded-md m-2">
       <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./index.html">info</a>
       <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./src/create.html">create</a>
       <a class="w-full h-full hover:bg-violet-100 centered text-center" href="./src/beetl.html">beetl</a>
     </menu>
-    <main>
-      <div>
-        <label for="beetl-name">Name:</label>
-        <input type="text" id="beetl-name" placeholder="Choose a title">
-        <p class="description">
+    <main class="h-full flex flex-col justify-around p-5">
+      <div class="flex flex-col gap-1">
+        <label class="label" for="beetl-name">Name:</label>
+        <input class="input" type="text" id="beetl-name" placeholder="Choose a title">
+        <!-- <p class="description">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
-        </p>
+        </p> -->
       </div>
-      <div>
-        <label for="beetl-description">Description:</label>
-        <input type="text" id="beetl-description" placeholder="describe if your project if you want">
-        <p class="description">
+      <div class="flex flex-col gap-1">
+        <label class="label" for="beetl-description">Description:</label>
+        <input class="input" type="text" id="beetl-description" placeholder="describe if your project if you want">
+        <!-- <p class="description">
           Lorem. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
-        </p>
+        </p> -->
       </div>
-      <div>
-        <label for="target-budget">Target Budget:</label>
-        <input type="text" id="target-budget" placeholder="4.000€ / 3.250 $ / ...">
-        <p class="description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
-        </p>
+      <div class="flex gap-12">
+        <div class="flex flex-col gap-1">
+          <label class="label" for="target-budget">Target Budget:</label>
+          <input class="input" type="text" id="target-budget" placeholder="4.000€ / 3.250 $ / ...">
+          <!-- <p class="description">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus in omnis, nulla impedit porro ipsam distinctio pariatur facilis dolor eius?
+          </p> -->
+        </div>
+        <div class="centered pr-2">
+          <button id="create-beetle" class="bg-blue-100 hover:bg-blue-200 rounded-full border w-20 aspect-square">
+            GO
+          </button>
+        </div>
       </div>
-      <button id="create-beetle">
-        GO
-      </button>
     </main>
   </div>
 </body>
