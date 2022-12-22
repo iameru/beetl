@@ -39,7 +39,7 @@ export function CreateBeetl() {
         <div className="grid grid-cols-2 gap-2 p-1">
           <p className="min-w-fit text-right">Das Bietziel</p>
           <CurrencyInput
-            placeholder='0€'
+            placeholder='0 €'
             suffix=" €"
             intlConfig={{locale:'de-DE', currency:'EUR'}}
             className="bg-transparent w-full text-cyan-800" 
