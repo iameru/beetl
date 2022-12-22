@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
+import { CreateBeetl } from "../components/Create"
 
 export function Home() {
 
@@ -10,10 +10,10 @@ export function Home() {
     'erreichen von spendenzielen'
   ]
   const [idxSug, setIdxSug] = useState(0)
-  const id = setTimeout(()=>{
+  setTimeout(()=>{
     const newIdx = (idxSug+1 != suggestions.length) ? idxSug+1 : 0
     setIdxSug(newIdx)
-  }, 500)
+  }, 1000)
 
   return (
   <> 
@@ -23,8 +23,8 @@ export function Home() {
         <p>
           erstelle ein beetl für
         </p>
-        <div className="bg-emerald-50 w-5/6 flex justify-center items-center">
-          <p className="text-emerald-600">
+        <div className="w-5/6 flex justify-center items-center">
+          <p className="text-emerald-600" id="changing-text">
           {suggestions[idxSug]}
           </p>
         </div>
@@ -32,8 +32,9 @@ export function Home() {
           className="text-sm text-link"
         to="/about">more infos</Link>
       </div>
-
-
+    </section>
+    <section className="flex flex-col items-center">
+      <CreateBeetl />
     </section>
   </>
   )
