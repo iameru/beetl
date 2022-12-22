@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         link: '#7E22CE',
+        actionbutton: '#22c55e'
       }
     },
   },
