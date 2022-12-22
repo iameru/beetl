@@ -1,4 +1,4 @@
-import { getUUID } from "../api"
+import { getUUID } from "../../api"
 
 export function CreateBeetl() {
 

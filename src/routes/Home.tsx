@@ -1,19 +1,9 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
-import { CreateBeetl } from "../components/Create"
+import { CreateBeetl } from "../components/home"
+import { UsageSuggestions } from "../components/home"
 
 export function Home() {
 
-  const suggestions = [
-    'solidarisches wirtschaften',
-    'gemeinsame kassen',
-    'erreichen von spendenzielen'
-  ]
-  const [idxSug, setIdxSug] = useState(0)
-  setTimeout(()=>{
-    const newIdx = (idxSug+1 != suggestions.length) ? idxSug+1 : 0
-    setIdxSug(newIdx)
-  }, 1000)
 
   return (
   <> 
@@ -24,9 +14,7 @@ export function Home() {
           erstelle ein beetl für
         </p>
         <div className="w-5/6 flex justify-center items-center">
-          <p className="text-emerald-600" id="changing-text">
-          {suggestions[idxSug]}
-          </p>
+          <UsageSuggestions /> 
         </div>
         <Link 
           className="text-sm text-link"
