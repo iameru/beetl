@@ -4,14 +4,15 @@ import { getUUID } from "../../api"
 
 type CreateFormState = {
   name: string
+  targetSum: number | ""
 }
 
-const defaultFormState = { 
-  name: getUUID()
+const defaultFormState:CreateFormState = { 
+  name: getUUID(),
+  targetSum: ""
  }
 
 export function CreateBeetl() {
-
 
   const [beetl, setBeetl] = useState(defaultFormState)
 
@@ -21,16 +22,27 @@ export function CreateBeetl() {
       <div className="flex border rounded divide-x">
         <div className="divide-y">
           <input
-            defaultValue={beetl.name}
+            value={beetl.name}
             placeholder='wie soll der link aussehen'
             className="bg-transparent w-full" 
-            type="text" />
+            type="text" 
+            onChange={(e)=>setBeetl( ({
+              ...beetl,
+              name: e.target.value
+            }))}
+            />
           <div className="flex divide-x">
             <p>Das Ziel?</p>
             <input
               placeholder='0€'
+              value={beetl.targetSum}
               className="bg-transparent"
-              type="number" />
+              type="number" 
+              onChange={(e)=>setBeetl( ({
+                ...beetl,
+                targetSum: parseInt(e.target.value)
+              }))}
+              />
           </div>
         </div>
         <button type="submit"
