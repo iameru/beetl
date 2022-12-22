@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { getUUID } from "../../api"
+import CurrencyInput from "react-currency-input-field"
 
 
 type CreateFormState = {
@@ -19,7 +20,7 @@ export function CreateBeetl() {
 
   return (
   <form onSubmit={(e)=>e.preventDefault()} 
-      className="flex rounded divide-x shadow"
+      className="flex rounded divide-x shadow m-3 rounded-r-lg"
       >
     <div className="divide-y">
       <div className="grid grid-cols-2 gap-2 p-1">
@@ -27,7 +28,7 @@ export function CreateBeetl() {
         <input
           value={beetl.name}
           placeholder='wie soll der link aussehen'
-          className="bg-transparent w-full text-cyan-900" 
+          className="bg-transparent w-full text-cyan-800" 
           type="text" 
           onChange={(e)=>setBeetl( ({
             ...beetl,
@@ -35,27 +36,26 @@ export function CreateBeetl() {
           }))}
           />
         </div>
-        <div className="grid grid-cols-12 gap-2 p-1">
-          <p className="min-w-fit text-right col-span-6">Das Bietziel</p>
-          <input
+        <div className="grid grid-cols-2 gap-2 p-1">
+          <p className="min-w-fit text-right">Das Bietziel</p>
+          <CurrencyInput
             placeholder='0€'
-            value={beetl.targetSum}
-            className="bg-transparent col-span-4 text-cyan-900 "
-            type="number" 
-            onChange={(e)=>setBeetl( ({
+            suffix=" €"
+            intlConfig={{locale:'de-DE', currency:'EUR'}}
+            className="bg-transparent w-full text-cyan-800" 
+            allowNegativeValue={false}
+            allowDecimals={false}
+            defaultValue={beetl.targetSum}
+            onValueChange={(value, name)=>setBeetl( ({
               ...beetl,
-              targetSum: parseInt(e.target.value)
+              targetSum: parseInt(value as string)
             }))}
             />
-          <select>
-            <option>€</option>
-            <option>Y</option>
-            <option>$</option>
-          </select>
+
         </div>
       </div>
       <button type="submit"
-        className="py-2 px-4 bg-emerald-500 rounded-r-lg"
+        className="py-2 px-4 rounded-r-lg bg-emerald-500 hover:bg-emerald-300"
       >
         GO!
       </button>
