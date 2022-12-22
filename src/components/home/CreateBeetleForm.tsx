@@ -1,13 +1,27 @@
+import { useState } from "react"
 import { getUUID } from "../../api"
+
+
+type CreateFormState = {
+  name: string
+}
+
+const defaultFormState = { 
+  name: getUUID()
+ }
 
 export function CreateBeetl() {
 
+
+  const [beetl, setBeetl] = useState(defaultFormState)
+
+
   return (
-    <>
+    <form onSubmit={(e)=>e.preventDefault()} >
       <div className="flex border rounded divide-x">
         <div className="divide-y">
           <input
-            value={getUUID()}
+            defaultValue={beetl.name}
             placeholder='wie soll der link aussehen'
             className="bg-transparent w-full" 
             type="text" />
@@ -19,12 +33,12 @@ export function CreateBeetl() {
               type="number" />
           </div>
         </div>
-        <button
-        className="p-2"
+        <button type="submit"
+          className="p-2"
         >
           GO!
         </button>
       </div>
-    </>
+    </form>
   )
 }
