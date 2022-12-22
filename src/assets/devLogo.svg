@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer2">
+    <g
+       id="layer1">
+      <text
+         xml:space="preserve"
+         style="font-size:28.1033px;font-family:'East Syriac Adiabene';-inkscape-font-specification:'East Syriac Adiabene, Normal';fill:none;fill-opacity:0.708146;stroke:#000000;stroke-width:0.900193"
+         x="34.684124"
+         y="102.17624"
+         id="text290"
+         transform="matrix(1.008589,-0.34331829,0.24810329,0.90703112,0,0)"><tspan
+           id="tspan288"
+           x="34.684124"
+           y="102.17624"
+           style="stroke-width:0.900193">€</tspan></text>
+    </g>
+    <path
+       style="fill:#818181;fill-opacity:0.211729;stroke:#000000;stroke-width:1.70835"
+       id="path453"
+       d="M 54.63871,46.406063 A 21.236422,18.23329 0 0 1 30.475908,61.703637 21.236422,18.23329 0 0 1 12.640562,40.969311 21.236422,18.23329 0 0 1 36.776534,25.640545 21.236422,18.23329 0 0 1 54.648188,46.351812" />
+    <path
+       style="fill:#818181;fill-opacity:0.211729;stroke:#000000;stroke-width:1.70835"
+       id="path3977"
+       d="M 92.373873,42.967682 A 20.861313,19.409021 0 0 1 68.637869,59.251685 20.861313,19.409021 0 0 1 51.117558,37.180353 20.861313,19.409021 0 0 1 74.827205,20.863148 20.861313,19.409021 0 0 1 92.383183,42.909933" />
+    <path
+       style="fill:#818181;fill-opacity:0.211729;stroke:#000000;stroke-width:1.70835"
+       id="path3979"
+       d="M 118.16677,63.535105 A 16.464201,15.023947 0 0 1 99.433802,76.140068 16.464201,15.023947 0 0 1 85.606392,59.055305 16.464201,15.023947 0 0 1 104.31856,46.424642 16.464201,15.023947 0 0 1 118.17412,63.490403" />
+    <path
+       style="fill:#818181;fill-opacity:0.211729;stroke:#000000;stroke-width:1.70835"
+       id="path3983"
+       d="M 69.110003,93.255428 A 28.5212,22.9133 0 0 1 36.658579,112.47949 28.5212,22.9133 0 0 1 12.705134,86.423203 28.5212,22.9133 0 0 1 45.120524,67.159943 28.5212,22.9133 0 0 1 69.122732,93.187252" />
+  </g>
+</svg>
