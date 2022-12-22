@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { randomInt } from "../../utils"
 
 export function UsageSuggestions() {
 
@@ -8,12 +8,13 @@ export function UsageSuggestions() {
     'gemeinsame kassen',
     'erreichen von spendenzielen'
   ]
-  const [idxSug, setIdxSug] = useState(0)
+  const randomStart = randomInt(0,suggestions.length)
+  const [idxSug, setIdxSug] = useState(randomStart)
 
   setTimeout(()=>{
     const newIdx = (idxSug+1 != suggestions.length) ? idxSug+1 : 0
     setIdxSug(newIdx)
-  }, 1000)
+  }, 3333)
   
 
 
