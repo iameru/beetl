@@ -8,6 +8,7 @@ const _routes  = [
   {name:'home', path:'/', index:true, element: <Home />},
   {name:'about', path:'about', element:<About />}
 ]
+export const navRoutes = _routes.map(r=>({ name:r.name, path:r.path }))
 
 const router = createBrowserRouter([
   {
