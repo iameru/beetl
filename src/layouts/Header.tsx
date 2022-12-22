@@ -4,8 +4,8 @@ import { navRoutes } from "../routes"
 export function Header() {
 
   return (
-  <header className="h-16 p-2 flex justify-around items-center bg-emerald-50
-        border-b rounded-b border-b-emerald-100">
+  <header className="h-16 p-2 flex justify-around items-center bg-emerald-200
+        border-b rounded-b border-b-emerald-300">
     <Link to='/' className="h-full" >
       <img src="/src/assets/devLogo.svg" className="h-full" />
     </Link>

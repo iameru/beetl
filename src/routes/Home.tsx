@@ -7,8 +7,8 @@ export function Home() {
 
   return (
   <> 
-    <section>
-      <h2 className="text-center text-2xl">beetl</h2>
+    <section className="flex flex-col gap-8">
+      <h2 className="text-center text-2xl font-medium">beetl</h2>
       <div className="flex flex-col items-center">
         <p>
           erstelle ein beetl für
