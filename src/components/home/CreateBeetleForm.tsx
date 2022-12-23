@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { getUUID } from "../../api"
+import { apiCreateBeetl, getUUID } from "../../api"
 import CurrencyInput from "react-currency-input-field"
 import { useNavigate } from "react-router-dom"
 
@@ -30,7 +30,17 @@ export function CreateBeetl() {
   }
 
   return (
-  <form onSubmit={(e)=>e.preventDefault()} 
+  <form onSubmit={async (e)=>{
+    e.preventDefault()
+    const {route, beetlObj} = handleForm()
+    const response = await apiCreateBeetl(beetlObj)
+
+    if (response.status === 'successfull') {
+
+      console.log('navigate')
+      navigate(route)
+    }
+  }}
       className="flex rounded divide-x shadow m-3 rounded-r-lg"
       >
     <div className="divide-y">
@@ -70,13 +80,7 @@ export function CreateBeetl() {
       </div>
       <button type="submit"
         className="py-2 px-4 rounded-r-lg bg-emerald-500 hover:bg-emerald-300"
-        onClick={(e)=>{
-          const {route, beetlObj} = handleForm()
-          // await makeEntryinDB(beetlObj)
-          // if successfull returned 
-          // then(navigate(route))
-          navigate(route)
-        }}
+
       >
         GO!
       </button>
