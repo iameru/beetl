@@ -1,5 +1,7 @@
 import axios from "axios";
+import { useState } from "react";
 import { LoaderFunctionArgs, Navigate, useLoaderData } from "react-router-dom";
+import { EditableInfo } from "../components/beetl/EditableDiv";
 
 import { BeetleType, EntryType } from "../types";
 import { baseURL } from "../utils";
@@ -26,14 +28,17 @@ export function Beetl() {
 
   const [beetl, entries]:BeetlResponse = useLoaderData() as BeetlResponse
 
+
   return (
-    <div className=""> 
-      asd
-      <div className="bg-gray-100 p-2">
-        <p>Name: {beetl.name}</p>
-        <p>TargetSum: {beetl.targetSum}</p>
-      </div>
-      <div className="bg-red-100 p-2">
+    <div> 
+      <section className="flex flex-col gap-3 p-5">
+        {Object.entries(beetl).filter(v=>v[0]!=='id').map( (entry) => {
+          const [key, value] = entry
+          const [state, setState] = useState(value)
+          return <EditableInfo key={key} dbRef={key} label={key} state={state} setState={setState} />
+        })}
+      </section>
+      {/* <div className="bg-red-100 p-2">
         {entries.map(entry=>{
           return (
             <div className="" key={entry.id}>
@@ -45,7 +50,7 @@ export function Beetl() {
           ) 
         })
         }
-      </div>
+      </div> */}
     </div>
   )
 }

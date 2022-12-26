@@ -36,10 +36,11 @@
       "id": "EINTUASE"
     },
     {
-      "name": "eins",
-      "targetSum": 1,
+      "name": "JOE",
+      "targetSum": "1500",
       "model": "beta",
-      "id": "eins"
+      "id": "eins",
+      "asd": ""
     },
     {
       "name": "ed7fa528",
