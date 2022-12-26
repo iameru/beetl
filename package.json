@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "axios": "^1.2.1",
+    "json-server": "^0.17.1",
     "postcss": "^8.4.20",
     "react": "^18.2.0",
     "react-currency-input-field": "^3.6.9",
@@ -15,6 +17,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "api": "json-server -w dev.db.json",
     "preview": "vite preview"
   },
   "author": "iameru",
