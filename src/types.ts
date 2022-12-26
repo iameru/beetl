@@ -10,5 +10,5 @@ export type EntryType = {
 export type BeetleType = {
   name: string
   targetSum: number | ""
-  model: "beta"
+  model?: "beta"
 }
