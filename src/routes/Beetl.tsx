@@ -1,22 +1,51 @@
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { LoaderFunctionArgs, Navigate, useLoaderData } from "react-router-dom";
+
+import { BeetleType, EntryType } from "../types";
+import { baseURL } from "../utils";
+
+export async function beetlLoader({params}:LoaderFunctionArgs) {
+
+  try {
+    const beetl = await axios.get(baseURL + `beetls/${params.id}`)
+    const entries = await axios.get(baseURL + `entries`, {params: {beetlsId:params.id}})
+    return [beetl.data, entries.data]
+  } catch (error) { throw error }
+}
+
+type BeetlResponse = [BeetleType, EntryType[]]
+
+
+export function BeetlErr() {
+
+  return <Navigate to={'/'} state={{error:"Something went wrong..."}} />
+}
 
 
 export function Beetl() {
 
-  // fetch beetl data with this later
-  // for now conceptual implementation with feedback
-  // in route (which is ugly for the Sum)
-  const { beetlUUID, targetSum } = useParams()
+  const [beetl, entries]:BeetlResponse = useLoaderData() as BeetlResponse
 
   return (
-    <>
     <div className=""> 
+      asd
       <div className="bg-gray-100 p-2">
-        <pre>UUID: { beetlUUID }</pre>
-        <pre>SUM: { targetSum }</pre>
+        <p>Name: {beetl.name}</p>
+        <p>TargetSum: {beetl.targetSum}</p>
+      </div>
+      <div className="bg-red-100 p-2">
+        {entries.map(entry=>{
+          return (
+            <div className="" key={entry.id}>
+              <div>{entry.id}</div>
+              <div>{entry.min}</div>
+              <div>{entry.max}</div>
+              <div>{entry.name}</div>
+            </div>
+          ) 
+        })
+        }
       </div>
     </div>
-    </>
   )
-
 }

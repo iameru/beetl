@@ -8,3 +8,5 @@ export function randomInt(start:number, end:number): number {
   
   return Math.floor(Math.random() * (end - start) + start)
 }
+
+export const baseURL = 'http://localhost:3000/'

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { CreateBeetl } from "../components/home"
 import { UsageSuggestions } from "../components/home"
 
+
 export function Home() {
 
 

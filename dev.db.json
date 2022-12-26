@@ -1,0 +1,105 @@
+{
+  "beetls": [
+    {
+      "id": 1,
+      "name": "5b6dab8c",
+      "targetSum": 123,
+      "model": "beta"
+    },
+    {
+      "name": "67498ce2",
+      "targetSum": 5000,
+      "id": 2
+    },
+    {
+      "name": "f727cb69",
+      "targetSum": 123,
+      "model": "beta",
+      "id": 3
+    },
+    {
+      "name": "hundert",
+      "targetSum": 123,
+      "model": "beta",
+      "id": 4
+    },
+    {
+      "name": "b97e498b",
+      "targetSum": 123,
+      "model": "beta",
+      "id": "b97e498b"
+    },
+    {
+      "name": "EINTUASE",
+      "targetSum": 1000,
+      "model": "beta",
+      "id": "EINTUASE"
+    },
+    {
+      "name": "eins",
+      "targetSum": 1,
+      "model": "beta",
+      "id": "eins"
+    },
+    {
+      "name": "ed7fa528",
+      "targetSum": 123,
+      "model": "beta",
+      "id": "ed7fa528"
+    },
+    {
+      "name": "zwei",
+      "targetSum": 2,
+      "model": "beta",
+      "id": "zwei"
+    },
+    {
+      "name": "6946b30a",
+      "targetSum": 200,
+      "model": "beta",
+      "id": "6946b30a"
+    },
+    {
+      "name": "853eda3a",
+      "targetSum": 123,
+      "model": "beta",
+      "id": "853eda3a"
+    },
+    {
+      "name": "853e11da3a",
+      "targetSum": 2222,
+      "model": "beta",
+      "id": "853e11da3a"
+    },
+    {
+      "name": "2dff63c7",
+      "targetSum": 213,
+      "model": "beta",
+      "id": "2dff63c7"
+    },
+    {
+      "name": "8bd8375b",
+      "targetSum": 123,
+      "model": "beta",
+      "id": "8bd8375b"
+    }
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "name": "joe",
+      "beetlsId": "5b6dab8c",
+      "min": 200,
+      "mid": null,
+      "max": 300
+    },
+    {
+      "id": 2,
+      "name": "jane",
+      "beetlsId": "eins",
+      "min": 123,
+      "mid": null,
+      "max": 456
+    }
+  ]
+}

@@ -2,16 +2,14 @@ import { useState } from "react"
 import { apiCreateBeetl, getUUID } from "../../api"
 import CurrencyInput from "react-currency-input-field"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
+import { BeetleType } from "../../types"
 
-type CreateFormState = {
-  name: string
-  targetSum: number | ""
-}
-
-const defaultFormState:CreateFormState = { 
+const defaultFormState:BeetleType = { 
   name: getUUID(),
-  targetSum: ""
+  targetSum: "",
+  model: "beta"
  }
 
 export function CreateBeetl() {
@@ -19,33 +17,29 @@ export function CreateBeetl() {
   const [beetl, setBeetl] = useState(defaultFormState)
   let navigate = useNavigate()
 
-  function handleForm() {
-
-    // build beetlObj to send to API. build route for
-    // button to navigate to it later
-    return {
-      route: `/${beetl.name}/${beetl.targetSum}`,
-      beetlObj: beetl
-    }
-  }
 
   return (
   <form onSubmit={async (e)=>{
+
     e.preventDefault()
-    const {route, beetlObj} = handleForm()
-    const response = await apiCreateBeetl(beetlObj)
 
-    if (response.status === 'successfull') {
+    const route = `/${beetl.name}`
+    const data = {...beetl, id:beetl.name}
+    const response = await axios.post("http://localhost:3000/beetls", data)
 
-      console.log('navigate')
+    if (response.status === 201) {
       navigate(route)
+    } else {
+      // show errors and feedback
+      console.log(response.status, response)
     }
   }}
+
       className="flex rounded divide-x shadow m-3 rounded-r-lg"
       >
     <div className="divide-y">
       <div className="grid grid-cols-2 gap-2 p-1">
-        <p className="text-gray-500 text-sm text-right">https://beetl.xyz/</p>
+        <p className="text-gray-500 text-right">https://beetl.xyz/</p>
         <input
           value={beetl.name}
           required={true}
