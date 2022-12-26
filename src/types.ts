@@ -1,10 +1,11 @@
 
 export type EntryType = {
-  id: number
-  name: string
+  id?: number
+  name?: string
   beetlsId: string
-  min: number
-  max: number
+  min?: number
+  max?: number
+  result?: number
 }
 
 export type BeetleType = {

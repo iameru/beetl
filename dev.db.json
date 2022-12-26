@@ -92,8 +92,18 @@
     },
     {
       "name": "4d85717f",
-      "targetSum": "",
+      "targetSum": "500",
       "id": "4d85717f"
+    },
+    {
+      "name": "7367877d",
+      "targetSum": "",
+      "id": "7367877d"
+    },
+    {
+      "name": "5734e32f",
+      "targetSum": "",
+      "id": "5734e32f"
     }
   ],
   "entries": [
