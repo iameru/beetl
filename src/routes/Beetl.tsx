@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, useId, useState } from "react";
 import { LoaderFunctionArgs, Navigate, useLoaderData } from "react-router-dom";
-import { EditableInfo } from "../components/beetl/EditableDiv";
+import { EditableInfo } from "../components/beetl/EditableInfo";
 
 import { BeetleType, EntryType } from "../types";
 import { baseURL } from "../utils";
