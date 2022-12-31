@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ChangeEvent, useId, useState } from "react";
 import { LoaderFunctionArgs, Navigate, useLoaderData } from "react-router-dom";
 import { EditableInfo } from "../components/beetl/EditableInfo";
@@ -12,7 +12,11 @@ export async function beetlLoader({params}:LoaderFunctionArgs) {
     const beetl = await axios.get(baseURL + `beetls/${params.id}`)
     const entries = await axios.get(baseURL + `entries`, {params: {beetlsId:params.id}})
     return [beetl.data, entries.data]
-  } catch (error) { throw error }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.message)
+    }
+}
 }
 
 type BeetlResponse = [BeetleType, EntryType[]]
@@ -20,7 +24,7 @@ type BeetlResponse = [BeetleType, EntryType[]]
 
 export function BeetlErr() {
 
-  return <Navigate to={'/'} state={{error:"Something went wrong..."}} />
+  return <Navigate to={'/'} state={{error:"Couldn't load beetl.. try again or create a new one please."}} />
 }
 
 type NewEntryState = [EntryType,React.Dispatch<React.SetStateAction<EntryType>> ]
