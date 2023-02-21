@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -21,7 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <footer className="w-full">
             {router.pathname === "/about" ? (
-              <Link href="/">Create a Beetl</Link>
+              <Link href="/" className="flex items-center">
+                <ChevronLeftIcon className="h-8" /> Create a Beetl
+              </Link>
             ) : (
               <Link href="/about">About</Link>
             )}
