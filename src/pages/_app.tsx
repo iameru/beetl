@@ -3,9 +3,10 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChevronLeftIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation } from "next-i18next";
+import LocaleSwitch from "@/components/localeSwitch";
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -20,7 +21,10 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <div className="px-8 py-5 h-screen w-screen">
         <div className="flex flex-col gap-4 w-full min-h-full justify-between">
-          <header className="w-full"><Link href="/">Beetl</Link></header>
+          <header className="w-full flex justify-between">
+            <Link href="/">Beetl</Link>
+            <LocaleSwitch />
+          </header>
           <Component {...pageProps} />
           <footer className="w-full">
             {router.pathname === "/about" ? (
@@ -37,4 +41,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(App)
+export default appWithTranslation(App);
