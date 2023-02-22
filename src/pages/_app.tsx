@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 
-export default function App({ Component, pageProps }: AppProps) {
+import { appWithTranslation } from 'next-i18next'
+
+function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
@@ -34,3 +36,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default appWithTranslation(App)
