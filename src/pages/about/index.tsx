@@ -1,23 +1,25 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-type Props = {};
 
-export default function About() {
-  const { t } = useTranslation("common");
+type Props = {}
 
-  console.log(t);
+export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'de', ["about"])),
+  },
+});
+
+export default function About(props:Props) {
+  const { t } = useTranslation("about");
+
+
   return (
     <div className="flex-1">
       <p>About</p>
-      <h2>{t("testString")}</h2>
+      <h2 className="bg-yellow-50 p-10 text-4xl">{t("testString")}</h2>
     </div>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale ?? "en", ["common"])),
-  },
-});
