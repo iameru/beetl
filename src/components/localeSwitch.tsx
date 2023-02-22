@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { i18n } from "../../next-i18next.config";
 import { LanguageIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import clsx from "clsx";
 
 export default function LocaleSwitch() {
   const router = useRouter();
@@ -19,7 +20,8 @@ export default function LocaleSwitch() {
           {i18n.locales.map((locale) => {
             return (
               <button
-                className="text-sm hover:bg-slate-400"
+                className={clsx("text-sm rounded p-1 px-2",
+                              router.locale === locale ? "bg-slate-900 text-white" : "hover:bg-neutral-200")}
                 key={locale}
                 onClick={() => changeLocale(locale)}
               >
@@ -29,7 +31,7 @@ export default function LocaleSwitch() {
           })}
         </>
       )}
-      <button className="text-sm" onClick={() => setShowLanguages((c) => !c)}>
+      <button className={clsx("text-sm hover:bg-neutral-200 rounded p-1", showLanguages && "bg-neutral-200")} onClick={() => setShowLanguages((c) => !c)}>
         <LanguageIcon className="h-6" />
       </button>
     </div>
