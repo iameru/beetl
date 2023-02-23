@@ -21,6 +21,7 @@
     "i18next": "^22.4.10",
     "next": "13.1.6",
     "next-i18next": "^13.1.5",
+    "pocketbase": "^0.11.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.1.5",
