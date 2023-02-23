@@ -55,10 +55,10 @@ function App({ Component, pageProps }: AppProps) {
               >Beetl</Link>
               <LocaleSwitch />
             </header>
-            <div className="flex-1 px-1 h-full w-full">
+            <div className="flex-1 px-1 shrink-0 h-min w-full">
               <Component {...pageProps} />
             </div>
-            <footer className="w-full">
+            <footer className="w-full min-h-fit">
               {router.pathname === "/about" ? (
                 <Link href="/" className="flex items-center">
                   <ChevronLeftIcon className="h-8" /> Create a Beetl

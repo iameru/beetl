@@ -1,3 +1,7 @@
 {
-  "testString": "[DE] = Ein einfaches Beispiel"
+  "infoBlocks" : [
+    {"title" : "", "text" : "Text drüber was die App so macht"},
+    {"title" : "Details", "text" : "Meh text darüber was die app so macht und tut und solMeh text darüber was die app so macht und tut und solMeh text darüber was die app so macht und tut und solllls"},
+    {"title" : "Teilen", "text" : "Teile gern!"}
+  ]
 }
