@@ -8,11 +8,20 @@ import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { appWithTranslation } from "next-i18next";
 import LocaleSwitch from "@/components/localeSwitch";
 
+import { Work_Sans } from "@next/font/google";
+
+const workSans = Work_Sans({ subsets: ["latin"] });
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
     <>
+      <style jsx global>{`
+        html {
+          font-family: ${workSans.style.fontFamily};
+        }
+      `}</style>
       <Head>
         <title>beetl</title>
         <meta name="description" content="equalize finances" />
