@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Loading from "@/components/Loading";
 
 type Props = {};
 
@@ -13,7 +14,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
 export default function About(props: Props) {
   const { t, ready } = useTranslation("about");
 
-  if (!ready) return <div>loading</div>;
+  if (!ready) return <Loading />;
 
   const infoBlocks: InfoProps[] = t("infoBlocks", { returnObjects: true });
 
@@ -24,6 +25,7 @@ export default function About(props: Props) {
       {infoBlocks.map((block: any) => (
         <InfoBlock title={block.title} text={block.text} />
       ))}
+      <InfoBlock title={t("openSource")} text={t("openSourceText")} />
     </div>
   );
 }

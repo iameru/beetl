@@ -3,5 +3,7 @@
     {"title" : "", "text" : "Text about what this app does in 1-2 sentences"},
     {"title" : "details", "text" : "More Meh text darüber was die app so macht und tut und soldetails about what this app doedetails about what this app doedetails about what this app doesssl"},
     {"title" : "share", "text" : "Pls share!"}
-  ]
+  ],
+  "openSource":"Open Source",
+  "openSourceText":"This app is open source and you are free to share collaborate and do stuff yadda."
 }
