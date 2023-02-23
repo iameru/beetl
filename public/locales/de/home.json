@@ -1,3 +1,6 @@
 {
-  "testFromHome": "hallo von haus, dies ist 1 deutsch"
+  "greetingText": "Biete mit anderen auf ein gemeinsames Ziel.",
+  "buttonCreate": "Erstellen",
+  "buttonOptions": "Optionen",
+  "createHint": "Erstelle ein Beetl"
 }

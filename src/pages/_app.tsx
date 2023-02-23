@@ -44,15 +44,20 @@ function App({ Component, pageProps }: AppProps) {
           />
         ))}
       </Head>
-      <div className="px-8 py-5 h-screen w-screen">
+      <div className="px-5 py-5 h-screen w-screen">
         <QueryClientProvider client={queryClient}>
           {appConfig.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-          <div className="flex flex-col gap-4 w-full min-h-full justify-between">
+          <div className="flex flex-col gap-4 w-full h-full min-h-full justify-between">
             <header className="w-full flex justify-between">
-              <Link href="/">Beetl</Link>
+              <Link href="/"
+                className="text-2xl font-semibold"
+
+              >Beetl</Link>
               <LocaleSwitch />
             </header>
-            <Component {...pageProps} />
+            <div className="flex-1 px-1 h-full w-full">
+              <Component {...pageProps} />
+            </div>
             <footer className="w-full">
               {router.pathname === "/about" ? (
                 <Link href="/" className="flex items-center">
