@@ -18,12 +18,10 @@ export default function About(props: Props) {
 
   const infoBlocks: InfoProps[] = t("infoBlocks", { returnObjects: true });
 
-  console.log(infoBlocks);
-
   return (
     <div className="grid grid-flow-row flex-1 py-10 gap-6">
       {infoBlocks.map((block: any) => (
-        <InfoBlock title={block.title} text={block.text} />
+        <InfoBlock key={block.title} title={block.title} text={block.text} />
       ))}
       <InfoBlock title={t("openSource")} text={t("openSourceText")} />
     </div>
