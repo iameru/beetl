@@ -1,3 +1,4 @@
+import Bids from "@/components/Bids";
 import Button from "@/components/Button";
 import Loading from "@/components/Loading";
 import { useBeetl } from "@/hooks/requests";
@@ -23,7 +24,6 @@ export default function BeetlView() {
       </div>
     );
   }
-  console.log(beetl)
 
   return (
     <div>
@@ -34,6 +34,7 @@ export default function BeetlView() {
       <p>slug: {beetl?.slug}</p>
       <p>title: {beetl?.title}</p>
       <p>updated: {beetl?.updated}</p>
+      <Bids beetlId={beetl?.id as string}/>
     </div>
   );
 }

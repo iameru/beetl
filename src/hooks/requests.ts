@@ -1,4 +1,4 @@
-import { PostBeetl, BeetlResponse, BeetlType } from '@/types';
+import { PostBeetl, BeetlResponse, BeetlType, BidResponse } from '@/types';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 import appConfig from 'beetl.config';
 import PocketBase from 'pocketbase';
@@ -15,6 +15,18 @@ export function useBeetl(slug: string) {
   return {
     ...query,
     beetl: query.data
+  }
+}
+export function useBids(beetlId) {
+
+  const query = useQuery(
+      ['bids', beetlId], 
+      () => getBids(beetlId), 
+      { enabled: Boolean(beetlId) }
+  )
+  return {
+    ...query,
+    bids: query.data
   }
 }
 
@@ -49,4 +61,9 @@ async function getBeetl(slug: string) {
     const record:BeetlResponse = await pb.collection('beetl_beetls')
           .getFirstListItem(`slug="${slug}"`)
     return record;
+} 
+
+async function getBids(beetlId: string) {
+  const records:BidResponse[] = await pb.collection('beetl_bid').getFullList(200, {sort: 'created', filter: `beetl.id="${beetlId}"`})
+  return records
 }
