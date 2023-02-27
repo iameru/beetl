@@ -30,16 +30,16 @@ export function useBids(beetlId) {
   }
 }
 
-export function useAddBeetl({slug, calculationType}:PostBeetl) {
+export function useAddBeetl({slug, calculationType, create}:PostBeetl & {create: boolean}) {
 
-  useBeetl(slug)
+  const executingFunc = () => createBeetl({slug: slug, calculationType: calculationType})
   const query = useQuery<BeetlResponse>(
     ['beetl', slug], 
-    () => createBeetl({slug: slug, calculationType: calculationType}), 
-    { enabled: Boolean(slug) }
+    executingFunc,
+    { enabled: Boolean(create) }
   )
-  
   return {
+    executingFunc,
     ...query,
     beetl: query.data
   }
@@ -49,6 +49,7 @@ async function createBeetl(data: BeetlType) {
     const record:BeetlResponse = await pb.collection('beetl_beetls').create(data);
     return record;
 }
+
 async function updateBeetl(id: string, data: BeetlType) {
     const record:BeetlResponse = await pb.collection('beetl_beetls').update(id, data);
     return record;
