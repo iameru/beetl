@@ -1,9 +1,10 @@
+export type possibleCalcTypes = "percentage" | "step"
 export type BeetlType = {
     slug: string
     target?: number
     title?: string
     description?: string
-    calculationType: "percentage" | "step"
+    calculationType: possibleCalcTypes
 };
 
 export type PostBeetl = {
