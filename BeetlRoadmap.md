@@ -2,7 +2,8 @@
 
 ## version 0.7
 
-[ ] functioning url generation + datafetching for beetl
+[X] functioning url generation
+[ ] datafetching for beetl
 [ ] add a beetl
 
 ## version 0.8

@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import BeetlInput from "@/components/BeetlInput";
 import { useEffect, useState } from "react";
 import { randomUrl } from "@/utils";
+import { PostBeetl } from "@/types";
 
 type Props = {};
 
@@ -17,14 +18,20 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
 export default function Index({}: Props) {
   const { t } = useTranslation();
 
-  const [beetlUrl, setBeetlUrl] = useState("");
-  const [urlRandomizer, setUrlRandomizer] = useState("");
   const [hydrated, setHydrated] = useState(false);
+  const [beetlData, setBeetlData] = useState<PostBeetl>({
+    slug: "",
+    obfuscation: "",
+    calculationType: "percentage",
+  });
 
   useEffect(() => {
     if (hydrated) return;
-    setUrlRandomizer(randomUrl(5));
-    setBeetlUrl(randomUrl(10));
+    setBeetlData((prev: PostBeetl) => ({
+      ...prev,
+      slug: randomUrl(10),
+      obfuscation: randomUrl(5),
+    }));
     setHydrated(true);
   }, []);
 
@@ -32,12 +39,7 @@ export default function Index({}: Props) {
     <div className="grid grid-flow-row grid-rows-2 w-full h-full min-h-full py-10">
       <p className="w-4/5">{t("home:greetingText")}</p>
       <div className="flex flex-col gap-5 max-w-full w-full">
-        <BeetlInput
-          beetlUrl={beetlUrl}
-          setBeetlUrl={setBeetlUrl}
-          urlRandomizer={urlRandomizer}
-          setUrlRandomizer={setUrlRandomizer}
-        />
+        <BeetlInput state={beetlData} setState={setBeetlData} />
         <div className="flex flex-col items-end">
           <p className="text-secondary-dark">{t("home:createHint")}</p>
           <div className="flex gap-1">
