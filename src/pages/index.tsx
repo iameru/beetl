@@ -10,6 +10,7 @@ import { createBeetl } from "@/hooks/requests";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/router";
+import appConfig from "beetl.config";
 
 type Props = {};
 
@@ -50,11 +51,41 @@ export default function Index({}: Props) {
     router.push(`/b/${mutation.data.obfuscation}/${mutation.data.slug}`);
   }
 
+  function handleCreateBeetl() {
+    mutation.mutate();
+  }
   return (
     <div className="grid grid-flow-row grid-rows-2 w-full h-full min-h-full py-10">
       <p className="w-4/5">{t("home:greetingText")}</p>
       <div className="flex flex-col gap-5 max-w-full w-full">
-        <BeetlInput state={beetlData} setState={setBeetlData} />
+        <div className="flex focus-within:border-primary-dark text-secondary-dark border border-secondary rounded-md py-2 px-2 w-full justify-center">
+          <span className="text-secondary">
+            {appConfig.domainName}/b/{beetlData.obfuscation}/
+          </span>
+          <input
+            className="flex-shrink-0 w-1/2 min-w-0 focus:outline-none"
+            onChange={(event) => {
+              const value = (event.target as HTMLInputElement).value.replaceAll(
+                " ",
+                "-"
+              );
+              setBeetlData((prev: PostBeetl) => ({
+                ...prev,
+                slug: value,
+                obfuscation: randomUrl(5),
+              }));
+            }}
+            onKeyUp={(event) => {
+              if (event.key == "Enter") {
+                handleCreateBeetl();
+              }
+            }}
+            maxLength={40}
+            type="text"
+            value={beetlData.slug}
+          />
+        </div>
+
         <div className="flex flex-col items-end">
           <p className="text-secondary-dark">{t("home:createHint")}</p>
           <div className="flex gap-1">
@@ -65,9 +96,8 @@ export default function Index({}: Props) {
             />
             <Button
               label={t("home:buttonCreate")}
-              onClick={async (event: React.ChangeEvent) => {
-                console.log(beetlData);
-                mutation.mutate();
+              onClick={(event: React.ChangeEvent) => {
+                handleCreateBeetl();
               }}
             />
           </div>
