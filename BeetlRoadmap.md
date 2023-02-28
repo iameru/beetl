@@ -4,7 +4,7 @@
 
 [X] functioning url generation
 [ ] datafetching for beetl
-[ ] add a beetl
+[X] add a beetl
 
 ## version 0.8
 

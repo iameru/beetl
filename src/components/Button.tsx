@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type Props = {
   label: string
-  onClick?: () => void
+  onClick?: Function
   secondary?: boolean
 }
 

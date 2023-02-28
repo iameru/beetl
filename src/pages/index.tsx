@@ -6,6 +6,10 @@ import BeetlInput from "@/components/BeetlInput";
 import { useEffect, useState } from "react";
 import { randomUrl } from "@/utils";
 import { PostBeetl } from "@/types";
+import { createBeetl } from "@/hooks/requests";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import Loading from "@/components/Loading";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -17,6 +21,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
 
 export default function Index({}: Props) {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const [hydrated, setHydrated] = useState(false);
   const [beetlData, setBeetlData] = useState<PostBeetl>({
@@ -35,6 +40,16 @@ export default function Index({}: Props) {
     setHydrated(true);
   }, []);
 
+  const mutation = useMutation(() => createBeetl(beetlData));
+
+  if (mutation.status == "loading") return <Loading />;
+  if (mutation.status == "error") {
+    // give user some feedback to try again
+  }
+  if (mutation.status == "success") {
+    router.push(`/b/${mutation.data.obfuscation}/${mutation.data.slug}`);
+  }
+
   return (
     <div className="grid grid-flow-row grid-rows-2 w-full h-full min-h-full py-10">
       <p className="w-4/5">{t("home:greetingText")}</p>
@@ -48,7 +63,13 @@ export default function Index({}: Props) {
               secondary={true}
               onClick={() => {}}
             />
-            <Button label={t("home:buttonCreate")} onClick={() => {}} />
+            <Button
+              label={t("home:buttonCreate")}
+              onClick={async (event: React.ChangeEvent) => {
+                console.log(beetlData);
+                mutation.mutate();
+              }}
+            />
           </div>
         </div>
       </div>
