@@ -1,10 +1,15 @@
 # Goals
 
+## todo
+
+- headlessUI
+
 ## version 0.7
 
 [X] functioning url generation
 [ ] datafetching for beetl
 [X] add a beetl
+[ ] saneUrl
 
 ## version 0.8
 
