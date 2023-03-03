@@ -2,12 +2,11 @@ import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Button from "@/components/Button";
-import BeetlInput from "@/components/BeetlInput";
 import { useEffect, useState } from "react";
-import { randomUrl } from "@/utils";
+import { randomUrl, saneUrl } from "@/utils";
 import { PostBeetl } from "@/types";
 import { createBeetl } from "@/hooks/requests";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/router";
 import appConfig from "beetl.config";
@@ -65,13 +64,10 @@ export default function Index({}: Props) {
           <input
             className="flex-shrink-0 w-1/2 min-w-0 focus:outline-none"
             onChange={(event) => {
-              const value = (event.target as HTMLInputElement).value.replaceAll(
-                " ",
-                "-"
-              );
+              const newUrl = saneUrl(event.target.value);
               setBeetlData((prev: PostBeetl) => ({
                 ...prev,
-                slug: value,
+                slug: newUrl,
                 obfuscation: randomUrl(5),
               }));
             }}
