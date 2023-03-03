@@ -4,14 +4,19 @@ type Props = {
   label: string
   onClick?: Function
   secondary?: boolean
+  className?: string
+  type?: "button" | "submit"
 }
 
-export default function Button({ label, onClick, secondary }: Props) {
+
+export default function Button({ label, onClick, secondary, className, type }: Props) {
   return (
     <button
       onClick={onClick}
+      type={type}
       className={clsx("px-4 py-2 rounded-lg",
-      secondary ? "bg-secondary-light hover:bg-secondary" : "bg-primary hover:bg-primary-dark text-white"
+      secondary ? "bg-secondary-light hover:bg-secondary" : "bg-primary hover:bg-primary-dark text-white",
+      className
       )}
     >
       {label}

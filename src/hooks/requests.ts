@@ -1,4 +1,4 @@
-import { PostBeetl, BeetlResponse, BidResponse } from "@/types";
+import { PostBeetl, BeetlResponse, BidResponse, PostBid } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import appConfig from "beetl.config";
 import PocketBase from "pocketbase";
@@ -35,6 +35,13 @@ async function getBeetl(obfuscation: string, slug: string) {
   const record: BeetlResponse = await pb
     .collection("beetl_beetls")
     .getFirstListItem(`obfuscation="${obfuscation}" && slug="${slug}"`);
+  return record;
+}
+
+export async function createBid(data: PostBid) {
+  const record: BidResponse = await pb
+    .collection("beetl_bid")
+    .create(data);
   return record;
 }
 

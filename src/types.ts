@@ -26,15 +26,17 @@ export type BeetlResponse = PostBeetl & {
   bids: [];
 };
 
-export type BidResponse = {
+export type PostBid = { 
+  name?: string;
+  min?: number;
+  mid?: number;
+  max?: number;
+  beetl: string;
+}
+export type BidResponse = PostBid & {
   id: string;
   collectionId: string;
   collectionName: string;
   created: string;
   updated: string;
-  name: string;
-  min: number;
-  mid: number;
-  max: number;
-  beetl: string;
 };

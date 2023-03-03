@@ -18,15 +18,7 @@ export default function BeetlView() {
 
   return (
     <div>
-      <p>obfuscation: {obfuscation}</p>
-      <p>calculationType: {beetl.calculationType}</p>
-      <p>created: {beetl.created}</p>
-      <p>description: {beetl.description}</p>
-      <p>target value: {beetl.target}</p>
-      <p>slug: {beetl.slug}</p>
-      <p>title: {beetl.title}</p>
-      <p>updated: {beetl.updated}</p>
-      <Bids beetlId={beetl.id as string} />
+      <Bids beetl={beetl} />
     </div>
   );
 }
