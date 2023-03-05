@@ -1,4 +1,4 @@
-import { createBid } from "@/hooks/requests";
+import { createBid, updateBid } from "@/hooks/requests";
 import { BeetlResponse, PostBid } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -34,16 +34,27 @@ export default function BidForm({
   const [bid, setBid] = useState<PostBid>(initialFormState);
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(() => createBid(bid), {
+  const createBidMutation = useMutation(() => createBid(bid), {
     onSuccess: () => {
       queryClient.invalidateQueries(["bids", beetl.id]);
-      setBid({ beetl: beetl.id });
+      setBid(initialFormState);
+      visibilityToggle();
+    },
+  });
+  const updateBidMutation = useMutation(() => updateBid(bid), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["bids", beetl.id]);
+      /// CHECK IF VIEW IS TOGGLED AGAIN THE OLD DATA IS STILL PRESENT
       visibilityToggle();
     },
   });
 
   function submitBid() {
-    mutation.mutate();
+    if (currentBid) {
+      updateBidMutation.mutate();
+    } else {
+      createBidMutation.mutate();
+    }
   }
 
   return (
@@ -101,7 +112,7 @@ export default function BidForm({
       <Button
         className="col-span-3"
         onClick={submitBid}
-        label="add"
+        label={currentBid ? "update" : "add"}
         type="submit"
       />
     </form>

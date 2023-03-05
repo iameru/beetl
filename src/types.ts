@@ -27,6 +27,7 @@ export type BeetlResponse = PostBeetl & {
 };
 
 export type PostBid = {
+  id?: string;
   name?: string;
   min?: number | "";
   mid?: number | "";

@@ -44,6 +44,10 @@ export async function createBid(data: PostBid) {
     .create(data);
   return record;
 }
+export async function updateBid(data: PostBid) {
+  const record = await pb.collection('beetl_bid').update(data.id as string, data);
+  return record;
+}
 
 async function getBids(beetlId: string) {
   const records: BidResponse[] = await pb
