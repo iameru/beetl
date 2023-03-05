@@ -61,7 +61,7 @@ function App({ Component, pageProps }: AppProps) {
             <footer className="w-full min-h-fit">
               {router.pathname === "/about" ? (
                 <Link href="/" className="flex items-center">
-                  <ChevronLeftIcon className="h-8" /> Create a Beetl
+                  <ChevronLeftIcon aria-label='Go Back' className="h-8" /> Create a Beetl
                 </Link>
               ) : (
                 <Link href="/about">About</Link>

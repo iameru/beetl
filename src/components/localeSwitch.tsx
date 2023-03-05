@@ -32,7 +32,7 @@ export default function LocaleSwitch() {
         </>
       )}
       <button className={clsx("text-sm hover:bg-neutral-200 rounded p-1", showLanguages && "bg-neutral-200")} onClick={() => setShowLanguages((c) => !c)}>
-        <LanguageIcon className="h-6" />
+        <LanguageIcon aria-label="switch Language" className="h-6" />
       </button>
     </div>
   );

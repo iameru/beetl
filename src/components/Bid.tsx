@@ -27,7 +27,7 @@ export default function Bid({ bid, selected, setSelected }: Props) {
       className={clsx("font-medium cursor-default hover:underline", selected && "underline")}
     >
       <td className="flex gap-1">
-        <PencilSquareIcon className={clsx("h-5 w-5 inline-block rounded hover:bg-secondary cursor-pointer", !hovered && "invisible")} />
+        <PencilSquareIcon aria-label="edit this entry" className={clsx("h-5 w-5 inline-block rounded hover:bg-secondary cursor-pointer", !hovered && "invisible")} />
         {bid.name}
       </td>
       <td className="text-signal-min">{bid.min}</td>
