@@ -8,16 +8,29 @@ type Props = {
   beetl: BeetlResponse;
   type: "new" | "edit";
   visibilityToggle: Function;
+  bid?: PostBid;
 };
 
-export default function BidForm({ beetl, type, visibilityToggle }: Props) {
-  const initialFormState: PostBid = {
-    beetl: beetl.id,
-    name: "",
-    min: "",
-    mid: "",
-    max: "",
-  };
+export default function BidForm({
+  beetl,
+  type,
+  visibilityToggle,
+  bid: currentBid,
+}: Props) {
+  let initialFormState: PostBid;
+
+  if (currentBid) {
+    initialFormState = currentBid;
+  } else {
+    initialFormState = {
+      beetl: beetl.id,
+      name: "",
+      min: "",
+      mid: "",
+      max: "",
+    };
+  }
+
   const [bid, setBid] = useState<PostBid>(initialFormState);
 
   const queryClient = useQueryClient();

@@ -48,6 +48,7 @@ export default function Bids({ beetl }: props) {
             return <Bid
               key={bid.id}
               bid={bid}
+              beetl={beetl}
               selected={(bid.id === selectedBid)}
               setSelected={setSelectedBid}
             />
