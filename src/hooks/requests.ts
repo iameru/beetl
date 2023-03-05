@@ -48,6 +48,6 @@ export async function createBid(data: PostBid) {
 async function getBids(beetlId: string) {
   const records: BidResponse[] = await pb
     .collection("beetl_bid")
-    .getFullList(200, { sort: "created", filter: `beetl.id="${beetlId}"` });
+    .getFullList(200, { sort: "updated", filter: `beetl.id="${beetlId}"` });
   return records;
 }

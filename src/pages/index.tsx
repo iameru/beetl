@@ -38,7 +38,7 @@ export default function Index({}: Props) {
       obfuscation: randomUrl(5),
     }));
     setHydrated(true);
-  }, []);
+  }, [hydrated]);
 
   const mutation = useMutation(() => createBeetl(beetlData));
 

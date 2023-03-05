@@ -10,16 +10,20 @@ type props = {
   beetl: BeetlResponse;
 };
 export default function Bids({ beetl }: props) {
+  const initialFormState: PostBid = {
+    beetl: beetl.id,
+    name: "",
+    min: "",
+    mid: "",
+    max: "",
+  };
+
   const [addBid, setAddBid] = useState(false);
-  const [newBid, setNewBid] = useState<PostBid>({ beetl: beetl.id });
-  const [selectedBid, setSelectedBid] = useState<string>();
+  const [newBid, setNewBid] = useState<PostBid>(initialFormState);
+  const [selectedBid, setSelectedBid] = useState<string>("");
   const { isLoading, isError, bids } = useBids(beetl.id);
 
   const queryClient = useQueryClient();
-
-  if (isLoading) return <Loading />;
-  if (isError) return <p>error</p>;
-
   const mutation = useMutation(() => createBid(newBid), {
     onSuccess: () => {
       queryClient.invalidateQueries(["bids", beetl.id]);
@@ -32,6 +36,9 @@ export default function Bids({ beetl }: props) {
     mutation.mutate();
   }
 
+  if (isLoading) return <Loading />;
+  if (isError) return <p>error</p>;
+
   return (
     <>
       <Button
@@ -40,7 +47,12 @@ export default function Bids({ beetl }: props) {
         className={clsx(addBid && "invisible")}
       />
       {addBid && (
-        <form className="absolute left-0 right-0 -mt-7 bg-secondary-light z-10 px-1 py-2 mx-4 grid grid-cols-12 border rounded border-primary-light focus-within:border-primary-dark">
+        <form
+          className="absolute left-0 right-0 -mt-7 bg-secondary-light z-10 px-1 py-2 mx-4 grid grid-cols-12 border rounded border-primary-light focus-within:border-primary-dark"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <input
             type="text"
             className="w-full focus:outline-none focus:font-semibold col-span-8 bg-secondary-light"
@@ -53,9 +65,11 @@ export default function Bids({ beetl }: props) {
           />
           <button
             className="col-start-12 text-black text-center hover:cursor-pointer px-2"
+            type="button"
             onClick={() => setAddBid((prev) => !prev)}
           >
-            hide
+            {" "}
+            hide{" "}
           </button>
           <input
             type="number"
@@ -112,7 +126,7 @@ export default function Bids({ beetl }: props) {
               key={bid.id}
               onClick={() =>
                 setSelectedBid((prev) => {
-                  if (prev === bid.id) return undefined;
+                  if (prev === bid.id) return "";
                   return bid.id;
                 })
               }

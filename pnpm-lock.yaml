@@ -12,6 +12,7 @@ specifiers:
   clsx: ^1.2.1
   eslint: 8.34.0
   eslint-config-next: 13.1.6
+  eslint-plugin-react-hooks: ^4.6.0
   i18next: ^22.4.10
   next: 13.1.6
   next-i18next: ^13.1.5
@@ -33,6 +34,7 @@ dependencies:
   clsx: 1.2.1
   eslint: 8.34.0
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
+  eslint-plugin-react-hooks: 4.6.0_eslint@8.34.0
   i18next: 22.4.10
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   next-i18next: 13.1.5_ict23jwgb5pzpgamw2nvwotxa4

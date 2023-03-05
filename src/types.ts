@@ -26,13 +26,13 @@ export type BeetlResponse = PostBeetl & {
   bids: [];
 };
 
-export type PostBid = { 
+export type PostBid = {
   name?: string;
-  min?: number;
-  mid?: number;
-  max?: number;
+  min?: number | "";
+  mid?: number | "";
+  max?: number | "";
   beetl: string;
-}
+};
 export type BidResponse = PostBid & {
   id: string;
   collectionId: string;
