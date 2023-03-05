@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "./Button";
 import { BeetlResponse } from "@/types";
 import BidForm from "./BidForm";
+import Bid from "./Bid";
 
 type props = {
   beetl: BeetlResponse;
@@ -33,7 +34,6 @@ export default function Bids({ beetl }: props) {
           type="new"
         />
       )}
-
       <table className="table table-auto border-collapse px-2 w-full">
         <thead className="font-normal">
           <tr>
@@ -43,28 +43,16 @@ export default function Bids({ beetl }: props) {
             <th>max</th>
           </tr>
         </thead>
-
         <tbody>
-          {bids?.map((bid) => (
-            <tr
+          {bids?.map((bid) => {
+            return <Bid
               key={bid.id}
-              onClick={() =>
-                setSelectedBid((prev) => {
-                  if (prev === bid.id) return "";
-                  return bid.id;
-                })
-              }
-              className={clsx(
-                "font-medium hover:underline",
-                selectedBid === bid.id && "underline"
-              )}
-            >
-              <td>{bid.name}</td>
-              <td className="text-signal-min">{bid.min}</td>
-              <td className="text-signal-mid">{bid.mid}</td>
-              <td className="text-signal-max">{bid.max}</td>
-            </tr>
-          ))}
+              bid={bid}
+              selected={(bid.id === selectedBid)}
+              setSelected={setSelectedBid}
+            />
+          }
+          )}
         </tbody>
       </table>
     </>
