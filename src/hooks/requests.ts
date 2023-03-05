@@ -39,13 +39,19 @@ async function getBeetl(obfuscation: string, slug: string) {
 }
 
 export async function createBid(data: PostBid) {
-  const record: BidResponse = await pb
-    .collection("beetl_bid")
-    .create(data);
+  const record: BidResponse = await pb.collection("beetl_bid").create(data);
   return record;
 }
 export async function updateBid(data: PostBid) {
-  const record = await pb.collection('beetl_bid').update(data.id as string, data);
+  const record = await pb
+    .collection("beetl_bid")
+    .update(data.id as string, data);
+  return record;
+}
+export async function deleteBid(data: PostBid) {
+  const record = await pb
+    .collection("beetl_bid")
+    .delete(data.id as string);
   return record;
 }
 

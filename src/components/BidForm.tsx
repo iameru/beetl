@@ -1,8 +1,13 @@
-import { createBid, updateBid } from "@/hooks/requests";
+import {
+  createBid,
+  updateBid,
+  deleteBid as deleteBidFunc,
+} from "@/hooks/requests";
 import { BeetlResponse, PostBid } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import Button from "./Button";
+import { TrashIcon } from "@heroicons/react/20/solid";
 
 type Props = {
   beetl: BeetlResponse;
@@ -33,6 +38,8 @@ export default function BidForm({
 
   const [bid, setBid] = useState<PostBid>(initialFormState);
 
+  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+
   const queryClient = useQueryClient();
   const createBidMutation = useMutation(() => createBid(bid), {
     onSuccess: () => {
@@ -48,7 +55,17 @@ export default function BidForm({
       visibilityToggle();
     },
   });
+  const deleteBidMutation = useMutation(() => deleteBidFunc(bid), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["bids", beetl.id]);
+      /// CHECK IF VIEW IS TOGGLED AGAIN THE OLD DATA IS STILL PRESENT
+      visibilityToggle();
+    },
+  });
 
+  function deleteBid() {
+    deleteBidMutation.mutate();
+  }
   function submitBid() {
     if (currentBid) {
       updateBidMutation.mutate();
@@ -72,6 +89,23 @@ export default function BidForm({
         onChange={(e) => setBid((prev) => ({ ...prev, name: e.target.value }))}
         required
       />
+      <button
+        className="absolute mt-1 col-start-10 rounded-lg bg-warning text-center hover:cursor-pointer hover:bg-danger px-2"
+        type="button"
+        onClick={() => setShowDeleteWarning(true)}
+      >
+        <TrashIcon className="h-4 w-5 inline-block text-white" />
+      </button>
+      {showDeleteWarning && (
+        <button
+          type="button"
+          onClick={() => deleteBid()}
+          onMouseLeave={() => setShowDeleteWarning(false)}
+          className="absolute col-start-11 col-span-2 p-2 text-center text-white bg-danger rounded-lg"
+        >
+          Delete this entry!
+        </button>
+      )}
       <button
         className="col-start-12 text-black text-center hover:cursor-pointer px-2"
         type="button"
