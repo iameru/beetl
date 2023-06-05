@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Button from "@/components/Button";
 import { useEffect, useState } from "react";
 import { randomUrl, saneUrl } from "@/utils";
-import { PostBeetl } from "@/types";
+import { BeetlPost } from "@/types";
 import { createBeetl } from "@/hooks/requests";
 import { useMutation } from "@tanstack/react-query";
 import Loading from "@/components/Loading";
@@ -24,15 +24,16 @@ export default function Index({}: Props) {
   const router = useRouter();
 
   const [hydrated, setHydrated] = useState(false);
-  const [beetlData, setBeetlData] = useState<PostBeetl>({
+  const [beetlData, setBeetlData] = useState<BeetlPost>({
     slug: "",
     obfuscation: "",
-    calculationType: "percentage",
+    method: "percentage",
+    beetlmode: "public",
   });
 
   useEffect(() => {
     if (hydrated) return;
-    setBeetlData((prev: PostBeetl) => ({
+    setBeetlData((prev: BeetlPost) => ({
       ...prev,
       slug: randomUrl(10),
       obfuscation: randomUrl(5),
@@ -65,7 +66,7 @@ export default function Index({}: Props) {
             className="flex-shrink-0 w-1/2 min-w-0 focus:outline-none"
             onChange={(event) => {
               const newUrl = saneUrl(event.target.value);
-              setBeetlData((prev: PostBeetl) => ({
+              setBeetlData((prev: BeetlPost) => ({
                 ...prev,
                 slug: newUrl,
                 obfuscation: randomUrl(5),

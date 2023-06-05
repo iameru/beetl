@@ -3,19 +3,17 @@ import clsx from "clsx";
 import Loading from "./Loading";
 import { useState } from "react";
 import Button from "./Button";
-import { BeetlResponse } from "@/types";
+import { BeetlGetResponse } from "@/types";
 import BidForm from "./BidForm";
 import Bid from "./Bid";
 
 type props = {
-  beetl: BeetlResponse;
+  beetl: BeetlGetResponse;
 };
 export default function Bids({ beetl }: props) {
   const [showAddBid, setShowAddBid] = useState(false);
-
   const [selectedBid, setSelectedBid] = useState<string>("");
-
-  const { isLoading, isError, bids } = useBids(beetl.id);
+  const { isLoading, isError, data } = useBids(beetl.obfuscation, beetl.slug);
 
   if (isLoading) return <Loading />;
   if (isError) return <p>error</p>;
@@ -44,7 +42,7 @@ export default function Bids({ beetl }: props) {
           </tr>
         </thead>
         <tbody>
-          {bids?.map((bid) => {
+          {data.bids?.map((bid) => {
             return <Bid
               key={bid.id}
               bid={bid}

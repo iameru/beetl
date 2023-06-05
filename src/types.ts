@@ -1,43 +1,41 @@
-export type possibleCalcTypes = "percentage" | "step";
-export type BeetlType = {
+export type BeetlPost = {
+  obfuscation: string;
   slug: string;
-  target?: number;
+  method: string;
+  beetlmode: "public" | "private";
   title?: string;
   description?: string;
-  calculationType: possibleCalcTypes;
+  target?: 0;
 };
-
-/*  this gets send to the server to create a beetl  */
-export type PostBeetl = {
-  slug: string;
-  obfuscation: string;
-  calculationType: "percentage" | "step";
+export type BeetlPostResponse = BeetlPost & {
+  secretkey: string;
 };
-
-export type BeetlResponse = PostBeetl & {
-  id: string;
-  collectionId: string;
-  collectionName: string;
+export type BeetlPatch = BeetlPost & {
+  secretkey: string;
+};
+export type BeetlGetResponse = BeetlPost & {
   created: string;
   updated: string;
-  target: number;
-  title: string;
-  description: string;
-  bids: [];
 };
 
 export type PostBid = {
-  id?: string;
-  name?: string;
-  min?: number | "";
-  mid?: number | "";
-  max?: number | "";
-  beetl: string;
+  name: string;
+  min: number;
+  mid?: number;
+  max: number;
+  beetl_obfuscation: string;
+  beetl_slug: string;
 };
-export type BidResponse = PostBid & {
-  id: string;
-  collectionId: string;
-  collectionName: string;
+export type GetBid = PostBid & {
   created: string;
   updated: string;
+};
+export type PostBidResponse = PostBid & {
+  created: string;
+  updated: string;
+  secretkey: string;
+};
+export type BidGetResponse = {
+  bids_total: number;
+  bids: GetBid[];
 };
