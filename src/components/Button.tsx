@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type Props = {
   label: string
-  onClick?: Function
+  onClick?: () => void
   secondary?: boolean
   className?: string
   type?: "button" | "submit"

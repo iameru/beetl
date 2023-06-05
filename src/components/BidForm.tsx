@@ -12,7 +12,7 @@ import { TrashIcon } from "@heroicons/react/20/solid";
 type Props = {
   beetl: BeetlResponse;
   type: "new" | "edit";
-  visibilityToggle: Function;
+  visibilityToggle: () => void;
   bid?: PostBid;
 };
 

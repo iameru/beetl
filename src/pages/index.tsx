@@ -92,7 +92,7 @@ export default function Index({}: Props) {
             />
             <Button
               label={t("home:buttonCreate")}
-              onClick={(event: React.ChangeEvent) => {
+              onClick={() => {
                 handleCreateBeetl();
               }}
             />
