@@ -27,10 +27,15 @@ export type PostBid = {
   beetl_slug: string;
 };
 export type GetBid = PostBid & {
+  id: string;
   created: string;
   updated: string;
 };
+export type PatchBid = GetBid & {
+  secretkey: string;
+}
 export type PostBidResponse = PostBid & {
+  id: string;
   created: string;
   updated: string;
   secretkey: string;
