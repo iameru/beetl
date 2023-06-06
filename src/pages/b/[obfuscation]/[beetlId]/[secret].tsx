@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useBeetl } from "@/hooks/requests";
 import Loading from "@/components/Loading";
 import BeetlNotFound from "@/components/BeetlNotFound";
-import { PencilSquareIcon } from "@heroicons/react/20/solid";
+import BeetlUpdateForm from "@/components/BeetlUpdateForm";
 
 export default function EditBeetlView() {
   const router = useRouter();
@@ -31,18 +31,7 @@ export default function EditBeetlView() {
       <Link className="link" href={router.asPath.replace(secret, "")}>
         click here to go to your beetl
       </Link>
-      <div className="hover:highlight-area p-1 space-y-2">
-        <h1 className="text-xl font-semibold flex items-center hover:cursor-pointer hover:text-primary-dark">
-          <PencilSquareIcon className="h-5 w-5 inline-block" />
-          Edit
-        </h1>
-        <p>title: {beetl.title}</p>
-        <p>description: {beetl.description}</p>
-        <p>target: {beetl.target}</p>
-        <p>method: {beetl.method}</p>
-        <p>beetlmode: {beetl.beetlmode}</p>
-        <p className="text-sm">last edited {beetl.updated}</p>
-      </div>
+      <BeetlUpdateForm beetl={beetl} secretkey={secret} />
     </div>
   );
 }
