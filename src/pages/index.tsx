@@ -23,6 +23,7 @@ export default function Index({}: Props) {
   const { t } = useTranslation();
   const router = useRouter();
 
+
   const [hydrated, setHydrated] = useState(false);
   const [beetlData, setBeetlData] = useState<BeetlPost>({
     slug: "",

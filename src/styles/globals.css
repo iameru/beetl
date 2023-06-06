@@ -14,4 +14,7 @@
   .link {
     @apply cursor-pointer text-primary-dark font-semibold;
   }
+  .highlight-area {
+    @apply rounded bg-black bg-opacity-10
+  }
 }
