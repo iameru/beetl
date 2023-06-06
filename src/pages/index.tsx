@@ -48,7 +48,7 @@ export default function Index({}: Props) {
     // give user some feedback to try again
   }
   if (mutation.status == "success") {
-    router.push(`/b/${mutation.data.obfuscation}/${mutation.data.slug}`);
+    router.push(`/b/${mutation.data.obfuscation}/${mutation.data.slug}/${mutation.data.secretkey}`);
   }
 
   function handleCreateBeetl() {
