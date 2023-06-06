@@ -10,3 +10,8 @@
     -moz-appearance: textfield !important;
   }
 }
+@layer components {
+  .link {
+    @apply cursor-pointer text-primary-dark font-semibold;
+  }
+}
