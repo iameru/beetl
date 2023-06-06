@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import CopyToClick from "@/components/CopyToClickText";
 import config from "beetl.config";
+import Link from "next/link";
 
 export default function EditBeetlView() {
   const router = useRouter();
@@ -15,9 +16,9 @@ export default function EditBeetlView() {
         </p>
         <CopyToClick text={config.domainName + router.asPath} />
       </div>
-      <a className="link" href={router.asPath.replace(secret, "")}>
+      <Link className="link" href={router.asPath.replace(secret, "")}>
         click here to go to your beetl
-      </a>
+      </Link>
       <h1 className="text-xl font-semibold">Edit</h1>
       <p className="text-sm">
         lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
