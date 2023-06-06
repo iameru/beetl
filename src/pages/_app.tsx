@@ -4,9 +4,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
+import Header from "@/components/Header";
 
 import { appWithTranslation } from "next-i18next";
-import LocaleSwitch from "@/components/localeSwitch";
 
 import { Work_Sans } from "@next/font/google";
 
@@ -18,7 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
-const workSans = Work_Sans({ subsets: ["latin"] });
+const font = Work_Sans({ subsets: ["latin"] });
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -27,7 +27,7 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <style jsx global>{`
         html {
-          font-family: ${workSans.style.fontFamily};
+          font-family: ${font.style.fontFamily};
         }
       `}</style>
       <Head>
@@ -48,20 +48,15 @@ function App({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           {appConfig.DEV && <ReactQueryDevtools initialIsOpen={false} />}
           <div className="flex flex-col gap-4 w-full h-full min-h-full justify-between">
-            <header className="w-full flex justify-between">
-              <Link href="/"
-                className="text-2xl font-semibold"
-
-              >Beetl</Link>
-              <LocaleSwitch />
-            </header>
+            <Header />
             <div className="flex-1 px-1 shrink-0 h-min w-full">
               <Component {...pageProps} />
             </div>
             <footer className="w-full min-h-fit">
               {router.pathname === "/about" ? (
                 <Link href="/" className="flex items-center">
-                  <ChevronLeftIcon aria-label='Go Back' className="h-8" /> Create a Beetl
+                  <ChevronLeftIcon aria-label="Go Back" className="h-8" />{" "}
+                  Create a Beetl
                 </Link>
               ) : (
                 <Link href="/about">About</Link>
