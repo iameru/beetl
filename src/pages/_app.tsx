@@ -44,7 +44,7 @@ function App({ Component, pageProps }: AppProps) {
           />
         ))}
       </Head>
-      <div className="px-5 py-5 h-screen w-screen">
+      <div className="px-5 py-5 h-screen w-screen transition-all ease-in-out">
         <QueryClientProvider client={queryClient}>
           {appConfig.DEV && <ReactQueryDevtools initialIsOpen={false} />}
           <div className="flex flex-col gap-4 w-full h-full min-h-full justify-between">

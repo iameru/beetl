@@ -5,7 +5,7 @@ export type BeetlPost = {
   beetlmode: "public" | "private";
   title?: string;
   description?: string;
-  target?: 0;
+  target?: number;
 };
 export type BeetlPostResponse = BeetlPost & {
   secretkey: string;

@@ -1,4 +1,4 @@
-import { BidGetResponse, PatchBid } from "@/types";
+import { BeetlPatch, BidGetResponse, PatchBid } from "@/types";
 import { BeetlPost, BeetlPostResponse, BeetlGetResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import appConfig from "beetl.config";
@@ -14,6 +14,16 @@ export async function createBeetl(data: BeetlPost): Promise<BeetlPostResponse> {
     throw new Error(response.statusText);
   }
 }
+
+export async function patchBeetl(data: BeetlPatch): Promise<BeetlGetResponse> {
+  const response = await axios.patch(`/beetl`, data);
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error(response.statusText);
+  }
+}
+
 async function getBeetl(
   obfuscation: string,
   slug: string
