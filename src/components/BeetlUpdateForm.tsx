@@ -76,12 +76,16 @@ export default function BeetlUpdateForm({ beetl, secretkey }: props) {
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
-        <InputBox
-          label="Description"
-          placeholder="Description"
-          type="text"
-          value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
+        <InputBoxLabel
+          label='Description'
+          element={
+            <textarea
+              value={form.description}
+              placeholder="Description"
+              className="px-3 border-b-2 border-l rounded-bl max-h-min"
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+            />
+          }
         />
         <InputBox
           label="Target Goal"
