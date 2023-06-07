@@ -1,14 +1,14 @@
-import { BeetlResponse, BidResponse } from "@/types";
+import { BeetlGetResponse, GetBid } from "@/types";
 import clsx from "clsx";
 import { PencilSquareIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import BidForm from "./BidForm";
 
 type Props = {
-  bid: BidResponse;
+  bid: GetBid;
   selected: Boolean;
   setSelected: Function;
-  beetl: BeetlResponse;
+  beetl: BeetlGetResponse;
 };
 export default function Bid({ bid, selected, setSelected, beetl }: Props) {
   const [hovered, setHovered] = useState(false);

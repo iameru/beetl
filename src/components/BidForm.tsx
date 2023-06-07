@@ -3,7 +3,7 @@ import {
   updateBid,
   deleteBid as deleteBidFunc,
 } from "@/hooks/requests";
-import { BeetlGetResponse, GetBid, PatchBid, PostBid } from "@/types";
+import { BeetlGetResponse, GetBid, PostBid, PatchBid } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import Button from "./Button";
@@ -25,13 +25,18 @@ export default function BidForm({
 }: Props) {
   let initialFormState: PostBid | PatchBid;
 
-  const {getBid} = useBidStore()
+  const { getBid } = useBidStore();
 
-
-  if (currentBid) {
-    const secretkey = (getBid(currentBid.id))?.secretkey
-    initialFormState = {...currentBid, secretkey: secretkey};
-    console.log(initialFormState)
+  if (type === "edit") {
+      const secretkey = getBid((currentBid as GetBid).id)?.secretkey;
+    if (typeof secretkey) {
+      initialFormState = { ...currentBid, secretkey: secretkey };
+    } else {
+      // ask for the secretkey.
+      // ask for the secretkey.
+      // ask for the secretkey.
+      // ask for the secretkey.
+    }
   } else {
     initialFormState = {
       name: "",
@@ -62,6 +67,7 @@ export default function BidForm({
   const updateBidMutation = useMutation(() => updateBid(bid), {
     onSuccess: () => {
       queryClient.invalidateQueries(["bids", beetl.obfuscation, beetl.slug]);
+
       /// CHECK IF VIEW IS TOGGLED AGAIN THE OLD DATA IS STILL PRESENT
       visibilityToggle();
     },
