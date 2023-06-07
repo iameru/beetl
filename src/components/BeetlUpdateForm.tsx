@@ -1,6 +1,6 @@
 import { patchBeetl } from "@/hooks/requests";
 import { BeetlGetResponse, BeetlPatch } from "@/types";
-import { isEqual } from "@/utils";
+import { isEqual, timefmt } from "@/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { useRef, useState } from "react";
@@ -77,13 +77,15 @@ export default function BeetlUpdateForm({ beetl, secretkey }: props) {
           onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
         <InputBoxLabel
-          label='Description'
+          label="Description"
           element={
             <textarea
               value={form.description}
               placeholder="Description"
               className="px-3 border-b-2 border-l rounded-bl max-h-min"
-              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
             />
           }
         />
@@ -126,9 +128,6 @@ export default function BeetlUpdateForm({ beetl, secretkey }: props) {
       </form>
     </>
   );
-}
-function timefmt(time: string) {
-  return new Date(time).toLocaleString();
 }
 
 function InputBoxLabel({

@@ -12,7 +12,10 @@ export function saneUrl(url: string) {
   newUrl = newUrl.replace(/[^a-z0-9-]/g, "");
   return newUrl;
 }
+export function timefmt(time: string) {
+  return new Date(time).toLocaleString();
+}
 
-export function isEqual(obj1:object, obj2:object) {
+export function isEqual(obj1: object, obj2: object) {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
