@@ -19,15 +19,6 @@ export default function Bids({ beetl }: props) {
 
   if (isLoading) return <Loading />;
   if (isError) return <p>error</p>;
-  // <HighlightHint
-  //   hint={
-  //     beetl.beetlmode == "public"
-  //       ? "public Beetl means everybody with the link can see each others bids"
-  //       : "private Beetl means that only the administrators can see your bids"
-  //   }
-  //   element={
-  //             //   }
-  // />
 
   return (
     <main className="flex flex-col gap-4">
