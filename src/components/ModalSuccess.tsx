@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { useEffect } from "react";
+import ModalTemplate from "./ModalTemplate";
 
 type props = {
   setShowSuccessMessage: (value: boolean) => void;
@@ -14,14 +15,7 @@ export default function ModalSuccess({ setShowSuccessMessage }: props) {
     };
   }, []);
   return (
-    <div
-      className={clsx(
-        "bg-black",
-        "bg-opacity-10",
-        "absolute w-screen h-screen top-0 left-0 min-w-screen min-h-screen",
-        "flex flex-col justify-center items-center"
-      )}
-    >
+    <ModalTemplate>
       <div
         className={clsx(
           "p-4 bg-success rounded",
@@ -32,6 +26,6 @@ export default function ModalSuccess({ setShowSuccessMessage }: props) {
       >
         <h1 className="text-2xl text-center font-semibold">Success :)</h1>
       </div>
-    </div>
+    </ModalTemplate>
   );
 }
