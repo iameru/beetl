@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { useRef, useState } from "react";
 import Button from "./Button";
+import { InputBox, InputBoxLabel } from "./Input";
 import ModalSuccess from "./ModalSuccess";
 
 type props = {
@@ -76,19 +77,14 @@ export default function BeetlUpdateForm({ beetl, secretkey }: props) {
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
-        <InputBoxLabel
-          label="Description"
-          element={
-            <textarea
-              value={form.description}
-              placeholder="Description"
-              className="px-3 border-b-2 border-l rounded-bl max-h-min"
-              onChange={(e) =>
-                setForm({ ...form, description: e.target.value })
-              }
-            />
-          }
-        />
+        <InputBoxLabel label="Description">
+          <textarea
+            value={form.description}
+            placeholder="Description"
+            className="px-3 border-b-2 border-l rounded-bl max-h-min"
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+          />
+        </InputBoxLabel>
         <InputBox
           label="Target Goal"
           placeholder="Target"
@@ -96,82 +92,30 @@ export default function BeetlUpdateForm({ beetl, secretkey }: props) {
           value={form.target}
           onChange={(e) => setForm({ ...form, target: Number(e.target.value) })}
         />
-        <InputBoxLabel
-          label="Calculation Method"
-          element={
-            <select
-              value={form.method}
-              onChange={(e) => setForm({ ...form, method: e.target.value })}
-            >
-              <option value="percentage">percentage</option>
-              <option value="stepwise">stepwise</option>
-            </select>
-          }
-        />
-        <InputBoxLabel
-          label="Public Beetl"
-          element={
-            <select
-              value={form.beetlmode}
-              // @ts-ignore
-              onChange={(e) => setForm({ ...form, beetlmode: e.target.value })}
-            >
-              <option value="public">public</option>
-              <option value="private">private</option>
-            </select>
-          }
-        />
+        <InputBoxLabel label="Calculation Method">
+          <select
+            value={form.method}
+            onChange={(e) => setForm({ ...form, method: e.target.value })}
+          >
+            <option value="percentage">percentage</option>
+            <option value="stepwise">stepwise</option>
+          </select>
+        </InputBoxLabel>
+        <InputBoxLabel label="Public Beetl">
+          <select
+            value={form.beetlmode}
+            // @ts-ignore
+            onChange={(e) => setForm({ ...form, beetlmode: e.target.value })}
+          >
+            <option value="public">public</option>
+            <option value="private">private</option>
+          </select>
+        </InputBoxLabel>
         <div className="flex justify-between">
           <p className="text-sm">created {timefmt(beetl.created)}</p>
           <p className="text-sm">last edited {timefmt(beetl.updated)}</p>
         </div>
       </form>
     </>
-  );
-}
-
-function InputBoxLabel({
-  label,
-  element,
-}: {
-  label: string;
-  element: JSX.Element;
-}) {
-  return (
-    <label className={clsx("px-1 py-0.5", "flex flex-col")}>
-      <span className="bg-black bg-opacity-10 w-1/3 rounded-tr px-1">
-        {label}
-      </span>
-      {element}
-    </label>
-  );
-}
-type InputBoxProps = {
-  label: string;
-  placeholder: string;
-  type: "text" | "number";
-  value: string | number | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-function InputBox({
-  type,
-  value,
-  label,
-  placeholder,
-  onChange,
-}: InputBoxProps) {
-  return (
-    <InputBoxLabel
-      label={label}
-      element={
-        <input
-          type={type}
-          value={value}
-          className="px-3 border-b-2 border-l rounded-bl"
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-      }
-    />
   );
 }
