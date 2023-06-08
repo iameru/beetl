@@ -3,9 +3,14 @@ import clsx from "clsx";
 type props = {
   children: React.ReactNode;
   className?: string;
-}
+  innerClassName?: string;
+};
 
-export default function ModalTemplate({ children, className }: props) {
+export default function ModalTemplate({
+  children,
+  className,
+  innerClassName,
+}: props) {
   return (
     <div
       className={clsx(
@@ -15,7 +20,15 @@ export default function ModalTemplate({ children, className }: props) {
         className ? className : "flex flex-col justify-center items-center"
       )}
     >
-      {children}
+      <div
+        className={clsx(
+          innerClassName
+            ? innerClassName
+            : "border rounded border-primary-light px-4 py-2 bg-white"
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }

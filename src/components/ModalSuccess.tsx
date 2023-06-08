@@ -15,17 +15,15 @@ export default function ModalSuccess({ setShowSuccessMessage }: props) {
     };
   }, []);
   return (
-    <ModalTemplate>
-      <div
-        className={clsx(
-          "p-4 bg-success rounded",
-          "mx-4",
-          "md:w-1/3",
-          "flex flex-col justify-center gap-4"
-        )}
-      >
-        <h1 className="text-2xl text-center font-semibold">Success :)</h1>
-      </div>
+    <ModalTemplate
+      innerClassName={clsx(
+        "p-4 bg-success bg-opacity-80 rounded",
+        "mx-4",
+        "md:w-1/3",
+        "flex flex-col justify-center gap-4"
+      )}
+    >
+      <h1 className="text-xl text-center">Success :)</h1>
     </ModalTemplate>
   );
 }
