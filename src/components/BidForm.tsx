@@ -5,10 +5,13 @@ import {
 } from "@/hooks/requests";
 import { BeetlGetResponse, GetBid, PostBid, PatchBid } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import { TrashIcon } from "@heroicons/react/20/solid";
 import useBidStore from "@/hooks/storage";
+import ModalTemplate from "./ModalTemplate";
+import AskForSecretKeyBid from "./AskForSecretKeyBid";
+import {InputBox} from "./Input";
 
 type Props = {
   beetl: BeetlGetResponse;
@@ -17,18 +20,106 @@ type Props = {
   bid?: GetBid;
 };
 
-export default function BidForm({
+export default function NewBidForm({
   beetl,
   type,
   visibilityToggle,
-  bid: currentBid,
+  bid,
 }: Props) {
+
+  let initialFormState: PostBid | PatchBid = bid || {
+    beetl_obfuscation: beetl.obfuscation,
+    beetl_slug: beetl.slug,
+    name: "",
+    min: 0,
+    mid: 0,
+    max: 0,
+  };
+  const [_secretKey, _setSecretKey] = useState('')
+  if (type === "edit") {
+    
+    const { getBid } = useBidStore();
+    const storedBid = getBid((bid as GetBid).id)
+    const secretkey = storedBid?.secretkey
+    if (_secretKey) {
+      (initialFormState as PatchBid).secretkey = _secretKey
+    } else if (secretkey) {
+      (initialFormState as PatchBid).secretkey = secretkey
+      _setSecretKey(secretkey)
+    } 
+  }
+  const [form, setForm] = useState<PostBid | PatchBid>(initialFormState);
+
+  function handleCancel() {
+    setForm(initialFormState);
+    visibilityToggle();
+  }
+  function handleSubmit() {
+    
+  }
+  return (
+    <ModalTemplate>
+      <h2 className="text-xl font-semibold">
+        {type === "new" && "Add New Bid"}
+        {type === "edit" && "Edit Bid"}
+      </h2>
+
+      <InputBox 
+        label="Name" 
+        placeholder="Name" 
+        type="text"
+        value={form.name} 
+        onChange={(e) => setForm({ ...form, name: e.target.value })} 
+      />
+      <InputBox
+        label="Min"
+        placeholder="Min"
+        type="number"
+        value={form.min}
+        onChange={(e) => setForm({ ...form, min: Number(e.target.value) })}
+      />
+      <InputBox
+        label="Mid"
+        placeholder="Mid"
+        type="number"
+        value={form.mid}
+        onChange={(e) => setForm({ ...form, mid: Number(e.target.value) })}
+      />
+      <InputBox
+        label="Max"
+        placeholder="Max"
+        type="number"
+        value={form.max}
+        onChange={(e) => setForm({ ...form, max: Number(e.target.value) })}
+      />
+      {type === 'edit' && <input type='hidden' name='secretkey' value={form.secretkey} />}
+
+      <Button secondary onClick={handleCancel} label="Cancel" />
+      <Button onClick={handleSubmit} label="Submit" />
+   
+      {type === "edit" && !_secretKey && 
+        <ModalTemplate>
+        <AskForSecretKeyBid cancel={handleCancel} setSecretKey={_setSecretKey} />
+      </ModalTemplate>
+    }
+    </ModalTemplate>
+  );
+}
+
+
+
+
+
+
+
+
+function BidForm({ beetl, type, visibilityToggle, bid: currentBid }: Props) {
   let initialFormState: PostBid | PatchBid;
 
   const { getBid } = useBidStore();
 
   if (type === "edit") {
-      const secretkey = getBid((currentBid as GetBid).id)?.secretkey;
+    const secretkey = getBid((currentBid as GetBid).id)?.secretkey;
     if (typeof secretkey) {
       initialFormState = { ...currentBid, secretkey: secretkey };
     } else {

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Button from "./Button";
+import {InputBox} from "./Input";
 
 type props = {
   setSecretKey: Function;
+  cancel: () => void;
 }
 
-export default function AskForSecretKeyBid({ setSecretKey }: props) {
+export default function AskForSecretKeyBid({ setSecretKey, cancel }: props) {
 
   const [stateSecretKey, setStateSecretKey] = useState("");
 
@@ -18,19 +20,22 @@ export default function AskForSecretKeyBid({ setSecretKey }: props) {
       <p>
         to edit this entry you need to enter the secret given to you earlier
       </p>
-      <div className="flex gap-2">
-      <input 
-        type="text" 
-        name="secretkey" 
-        className="w-full border rounded-lg px-2"
-        placeholder="secret key"
-        value={stateSecretKey}
-        onChange={(e) => setStateSecretKey(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-      />
-        <Button label="Go" 
+      <div className="flex flex-col gap-2">
+
+        <InputBox
+          type="text"
+          placeholder="Secret Key"
+          label="Secret Key"
+          value={stateSecretKey}
+          onChange={(e) => setStateSecretKey(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+        />
+        <div className="self-end">
+        <Button secondary label='cancel' onClick={cancel} />
+        <Button label="Submit" 
           onClick={handleSubmit}
         />
+        </div>
       </div>
     </section>
   );

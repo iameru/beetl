@@ -13,6 +13,7 @@ type Props = {
 export default function Bid({ bid, selected, setSelected, beetl }: Props) {
   const [hovered, setHovered] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [secretKey, setSecretKey] = useState("");
 
   return (
     <>
