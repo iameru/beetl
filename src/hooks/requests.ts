@@ -1,4 +1,4 @@
-import { BeetlPatch, BidGetResponse, PatchBid } from "@/types";
+import { BeetlPatch, BidDelete, BidGetResponse, PatchBid } from "@/types";
 import { BeetlPost, BeetlPostResponse, BeetlGetResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import appConfig from "beetl.config";
@@ -29,6 +29,31 @@ async function getBeetl(
   slug: string
 ): Promise<BeetlGetResponse> {
   const response = await axios.get("/beetl", { params: { obfuscation, slug } });
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    throw new Error(response.statusText);
+  }
+}
+export async function deleteBid({
+  beetl_obfuscation,
+  beetl_slug,
+  secretkey,
+}: BidDelete) {
+  const response = await axios.delete("/bid", {
+    params: { beetl_obfuscation, beetl_slug, secretkey },
+  });
+
+  if (response.status === 200) {
+    return response;
+  } else {
+    throw new Error(response.statusText);
+  }
+}
+
+export async function updateBid(data: PatchBid): Promise<PostBidResponse> {
+  const _data = { ...data, id: null };
+  const response = await axios.patch("/bid", _data);
   if (response.status === 200) {
     return response.data;
   } else {
@@ -71,18 +96,8 @@ export function useBids(obfuscation: string, slug: string) {
   };
 }
 
-import { PostBid, GetBid, PostBidResponse } from "@/types";
-export async function createBid(data: PostBid): Promise<PostBidResponse> {
-  const response = await axios.post("/bid", data);
-  if (response.status === 200) {
-    return response.data;
-  } else {
-    throw new Error(response.statusText);
-  }
-}
-export async function updateBid(data: PatchBid): Promise<PostBidResponse> {
-  const _data = { ...data, id: null };
-  const response = await axios.patch("/bid", _data);
+export async function checkSecretKey(id: string, secretkey: string) {
+  const response = await axios.post(`/checksecretkey`, { secretkey, id });
   if (response.status === 200) {
     return response.data;
   } else {
@@ -90,8 +105,9 @@ export async function updateBid(data: PatchBid): Promise<PostBidResponse> {
   }
 }
 
-export async function deleteBid(data: PatchBid) {
-  const response = await axios.delete("/bid", { data });
+import { PostBid, GetBid, PostBidResponse } from "@/types";
+export async function createBid(data: PostBid): Promise<PostBidResponse> {
+  const response = await axios.post("/bid", data);
   if (response.status === 200) {
     return response.data;
   } else {

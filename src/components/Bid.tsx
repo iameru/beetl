@@ -13,7 +13,6 @@ type Props = {
 export default function Bid({ bid, selected, setSelected, beetl }: Props) {
   const [hovered, setHovered] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [secretKey, setSecretKey] = useState("");
 
   return (
     <>
@@ -37,7 +36,7 @@ export default function Bid({ bid, selected, setSelected, beetl }: Props) {
             aria-label="edit this entry"
             className={clsx(
               "h-5 w-5 inline-block rounded hover:bg-secondary cursor-pointer",
-              !hovered && "invisible"
+              !hovered && !selected && "invisible"
             )}
             onClick={() => setEditMode((prev) => !prev)}
           />

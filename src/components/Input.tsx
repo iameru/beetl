@@ -42,6 +42,7 @@ export function InputBox({
         placeholder={placeholder}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        required
       />
     </InputBoxLabel>
   );

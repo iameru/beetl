@@ -24,7 +24,7 @@ export default function ModalTemplate({
         className={clsx(
           innerClassName
             ? innerClassName
-            : "border rounded border-primary-light px-4 py-2 bg-white"
+            : "border rounded border-primary-light px-4 py-2 bg-white mx-4",
         )}
       >
         {children}

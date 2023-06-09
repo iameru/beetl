@@ -33,7 +33,7 @@ export type GetBid = PostBid & {
 };
 export type PatchBid = GetBid & {
   secretkey: string;
-}
+};
 export type PostBidResponse = PostBid & {
   id: string;
   created: string;
@@ -43,4 +43,10 @@ export type PostBidResponse = PostBid & {
 export type BidGetResponse = {
   bids_total: number;
   bids: GetBid[];
+};
+
+export type BidDelete = {
+  beetl_obfuscation: string;
+  beetl_slug: string;
+  secretkey: string;
 };
