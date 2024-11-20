@@ -1,6 +1,6 @@
 # beetl
 
-** currently on halt as I do not find much time **
+**currently on halt as I do not find much time**!
 
 a webapp to allow communities to bid on a target value and distribute the costs in a non fixed way.
 its a small part of trying to even out financial inequality.
